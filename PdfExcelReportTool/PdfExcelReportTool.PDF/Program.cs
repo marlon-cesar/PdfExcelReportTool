@@ -18,10 +18,9 @@ var pdf = Document.Create(document =>
 });
 
 pdf.GeneratePdf(@$"c:\temp\report-{DateTime.Now:yyyy-MM-dd-HHmmss}.pdf");
+
+// To generate as a Byte array instead of saving to a file, uncomment the following line:
 //var byteArray = pdf.GeneratePdf();
-
-
-
 
 static PageDescriptor CreatePage(PageDescriptor page, string title, bool landscape)
 {
@@ -121,8 +120,22 @@ static void CreateContent(PageDescriptor page)
 }
 
 static IContainer HeaderStyle(IContainer elemento) =>
-    elemento.Border(1).BorderColor(Colors.Black).Background(Colors.Yellow.Medium).AlignCenter().AlignMiddle().Padding(2).DefaultTextStyle(style => style.Bold().FontSize(9));
+    elemento
+        .Border(1)
+        .BorderColor(Colors.Black)
+        .Background(Colors.Yellow.Medium)
+        .AlignCenter()
+        .AlignMiddle()
+        .Padding(2)
+        .DefaultTextStyle(style => style.Bold().FontSize(9));
 
 static IContainer DefaultCellStyle(IContainer elemento) =>
-    elemento.Border(1).BorderColor(Colors.Black).Background(Colors.White).AlignCenter().AlignMiddle().Padding(2).DefaultTextStyle(style => style.FontSize(9).FontColor(Colors.Black));
+    elemento
+        .Border(1)
+        .BorderColor(Colors.Black)
+        .Background(Colors.White)
+        .AlignCenter()
+        .AlignMiddle()
+        .Padding(2)
+        .DefaultTextStyle(style => style.FontSize(9).FontColor(Colors.Black));
 
